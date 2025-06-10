@@ -1,0 +1,4 @@
+Moscow - Sochi|14.06.2025 13:00|15000
+Novosibirsk - Saint Petersburg|25.06.2025 21:00|10000
+Kazan - Samara|10.06.2025 15:00|7000
+Vladivostok - Moscow|28.07.2025 00:30|65000
