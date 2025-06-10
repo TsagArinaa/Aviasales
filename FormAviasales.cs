@@ -3,7 +3,7 @@ namespace Aviasales
     public partial class FormAviasales : Form
     {
         string filePath = "ListFligth.txt";
-        List<string> left = new List<string>();
+        List<Fligth> left = new List<Fligth>();
         List<string> right = new List<string>();
 
         public FormAviasales()
@@ -15,8 +15,8 @@ namespace Aviasales
         void LoadLeft()
         {
             LoadFromFile();
-            foreach (string item in left)
-                listBoxFligth.Items.Add(item);
+            foreach (Fligth item in left)
+                listBoxFligth.Items.Add(item.ToString());
         }
 
         void LoadRight()
@@ -24,6 +24,7 @@ namespace Aviasales
 
             foreach (string item in right)
                 listBoxSelected.Items.Add(item);
+
         }
 
         void LoadFromFile()
@@ -33,7 +34,10 @@ namespace Aviasales
                 string? line;
                 while ((line = reader.ReadLine()) != null)
                 {
-                    left.Add(string.Join(" ", line.Split('|')));
+                    string[] data = line.Split('|');
+                    Fligth fligth = new(data[0], data[1], data[2]);
+
+                    left.Add(fligth);
                 }
             }
 
@@ -46,9 +50,16 @@ namespace Aviasales
 
         private void listBoxFligth_DoubleClick(object sender, EventArgs e)
         {
+
+            FormData form = new();
+            form.ShowDialog();
+            MessageBox.Show(form.Name);
+
             right.Clear();
-            right.Add(listBoxFligth.SelectedItem?.ToString() ?? "");
+            right.Add(listBoxFligth.SelectedItem?.ToString() + form.Name ?? "");
+
             LoadRight();
+            
         }
     }
 }
